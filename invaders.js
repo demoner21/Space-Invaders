@@ -289,6 +289,7 @@ const keys =
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
 
+// animation the game
 function animation()
 {
     requestAnimationFrame(animation);
@@ -296,10 +297,27 @@ function animation()
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
 
-    invaderProjectiles.forEach((invaderProjectile) =>
+    invaderProjectiles.forEach((invaderProjectile, index) =>
     {
+        if(invaderProjectile.position.y + invaderProjectile.height >= canvas.height)
+        {
+            setTimeout(() =>
+            {
+                invaderProjectile.splice(index, 1)
+            }, 0)
+        }
+        else
+        {
+            invaderProjectiles.update()
+        }
+
         invaderProjectile.update()
     })
+/*     if (frames % 100 === 0 && grid.invaders.length > 0)
+    {
+        grid.invaders[Math.floor(Math.random() * grid.invaders.length)]
+        .shoot(invaderProjectiles)
+      } */
 
     projectiles.forEach((projectile, index) =>
         {
@@ -320,11 +338,6 @@ function animation()
         {
             grid.update()
             //spawn projectiles
-            if (frames % 100 === 0 && grid.invaders.length > 0)
-            {
-                grid.invaders[Math.floor(Math.random() * grid.invaders.length)]
-                .shoot(invaderProjectiles)
-              }
             grid.invaders.forEach((invader, i) =>
             {
                 invader.update(
@@ -332,6 +345,7 @@ function animation()
                         velocity: grid.velocity
                     }
                 )
+                // projectiles implementation
                 projectiles.forEach((projectile, j) =>
                     {
                         if(
