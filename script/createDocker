@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Build Docker Image
+docker build -t space-invader-site .
+
+# The command line above will create a docker image name 'space-invader-site'.
+# Use the command docker image ls -a, to see the images in your local system.
+
+# Run Docker Container
+docker run -it -d -p 80:80 space-invader-site
+
+# In case the port 80 is occupied you can use this
+# docker run -it -d -p 8080:80 space-invader-site
+
+# Use 'docker ps' command to view the running container or if you didn't find any container use 'docker ps -a' to view all container in any state on your machine
+
+# Access Your Application and have fun
+# Go on localhost:${port} and enjoy

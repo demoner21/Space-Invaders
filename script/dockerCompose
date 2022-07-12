@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Build Docker Compose
+docker-compose build
+
+# This will create a docker image with the help of Dockerfile
+# Then we wun a docker container using
+docker-compose up -d
+
+# Onde you have the docker container up and running, you can rebuild image and recreate your container any time.
+# Our docker-compose.yml is running in the port 8080 in our localhost
+# Enjoy
