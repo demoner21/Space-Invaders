@@ -162,7 +162,6 @@ class Invader
 
     draw()
     {
-        {
             c.drawImage
         (
             this.image,
@@ -171,7 +170,6 @@ class Invader
             this.width,
             this.height,
         )
-        }
     }
 
     update({ velocity })
@@ -303,21 +301,12 @@ function animation()
         {
             setTimeout(() =>
             {
-                invaderProjectile.splice(index, 1)
+                invaderProjectiles.splice(index, 1)
             }, 0)
         }
-        else
-        {
-            invaderProjectiles.update()
-        }
+        else invaderProjectile.update()
 
-        invaderProjectile.update()
     })
-/*     if (frames % 100 === 0 && grid.invaders.length > 0)
-    {
-        grid.invaders[Math.floor(Math.random() * grid.invaders.length)]
-        .shoot(invaderProjectiles)
-      } */
 
     projectiles.forEach((projectile, index) =>
         {
@@ -338,6 +327,11 @@ function animation()
         {
             grid.update()
             //spawn projectiles
+/*             if (frames % 100 === 0 && grid.invaders.length > 0)
+            {
+                grid.invaders[Math.floor(Math.random() * grid.invaders.length)]
+                .shoot(invaderProjectiles)
+            } */
             grid.invaders.forEach((invader, i) =>
             {
                 invader.update(
@@ -345,7 +339,7 @@ function animation()
                         velocity: grid.velocity
                     }
                 )
-                // projectiles implementation
+                // projectiles hit enemies implementation
                 projectiles.forEach((projectile, j) =>
                     {
                         if(
@@ -445,7 +439,7 @@ animation()
 
 // control the movement of spaceship
 // start the movement with the following keys was pressed
-addEventListener('keydown', ({ key }) =>
+window.addEventListener('keydown', ({ key }) =>
 {
     switch (key)
     {
