@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: space-invader-site
+    build: .
+    container_name: space-invader-site
+    restart: always
+    ports:
+      - "8080:80"
