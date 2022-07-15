@@ -327,11 +327,11 @@ function animation()
         {
             grid.update()
             //spawn projectiles
-/*             if (frames % 100 === 0 && grid.invaders.length > 0)
+             /*if (frames % 100 === 0 && grid.invaders.length > 0)
             {
                 grid.invaders[Math.floor(Math.random() * grid.invaders.length)]
                 .shoot(invaderProjectiles)
-            } */
+            }*/
             grid.invaders.forEach((invader, i) =>
             {
                 invader.update(
@@ -450,9 +450,7 @@ window.addEventListener('keydown', ({ key }) =>
             keys.d.pressed = true;
             break
         case ' ':
-            projectiles.push
-            (
-                new Projectile
+            projectiles.push(new Projectile
                 ({
                     position:
                     {
