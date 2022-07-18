@@ -15,6 +15,6 @@ feito em HTML5 usando Canvas, nesse projeto utilizado para recriar um classico d
 foi possivel abordar conteudos como Manipulação da DOM, Swith, Desestruturação, Arrays, CallBacks, Arrowfunction...
 
 # Proximos passos a serem implementados
-Criação de Background
-Condição de Derrota
+Criação de Background,
+Condição de Derrota,
 Score
