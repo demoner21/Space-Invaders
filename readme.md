@@ -8,7 +8,7 @@ it was possible to address content such as DOM Manipulation, Swith, Destructurin
 Background Creation
 Defeat Condition
 score
-# Trazendo o Atari par ao Html
+# Trazendo o Atari para o Html
 
 nesse projeto pude utilizar para continuidade dos meus estudos as possibilidades de construção de um jogo
 feito em HTML5 usando Canvas, nesse projeto utilizado para recriar um classico dos jogos o Space Invaders
