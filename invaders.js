@@ -13,6 +13,7 @@ class Player {
         }
 
         this.rotation = 0
+        this.opacity = 1
 
         const image = new Image()
         image.src = './assets/spaceship.png'
@@ -26,10 +27,11 @@ class Player {
             y: canvas.height - this.height - 20
             }
         }
-    };
+    }
 
     draw() {
         c.save() //save the start possition of our space ship
+        c.globalAlpha = this.opacity
         c.translate
             (
             player.position.x + player.width / 2,
@@ -91,13 +93,14 @@ class Projectile {
 }
 
 class Particle {
-    constructor({ position, velocity, radius,  color }) {
+    constructor({ position, velocity, radius,  color, fades }) {
         this.position = position,
         this.velocity = velocity
 
         this.radius = radius
         this.color = color
         this.opacity = 1
+        this.fades = fades
     }
 
     draw() {
@@ -116,7 +119,7 @@ class Particle {
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
-        this.opacity -= 0.01
+        if (this.fades) this.opacity -= 0.01
     }
 }
 
@@ -260,7 +263,29 @@ const keys = {
 
 let frames = 0
 let randomWave = Math.floor(Math.random() * 500 + 500)
-function createParticles({object, color}) {
+let game = {
+    over: false,
+    active: false
+}
+
+for (let k = 0; k < 100; k++) {
+    particles.push(
+        new Particle({
+            position: {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height
+        },
+        velocity: {
+            x: 0,
+            y: 0.4
+    },
+    radius: Math.random() * 3,
+    color: 'white'
+})
+)
+}
+
+function createParticles({ object, color, fades }) {
         for (let k = 0; k < 15; k++) {
                 particles.push(
                     new Particle({
@@ -273,7 +298,8 @@ function createParticles({object, color}) {
                         y: (Math.random() - 0.5) * 2
                 },
                 radius: Math.random() * 3,
-                color: color || '#BAA0DE'
+                color: color || '#BAA0DE',
+                fades
             })
             )
         }
@@ -281,11 +307,19 @@ function createParticles({object, color}) {
 }
 
 function animation() {
+    if (game.active == true) {
+        return false
+    }
     requestAnimationFrame(animation)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     particles.forEach((particle, n) => {
+        if (particle.position.y - particle.radius >= canvas.height) {
+            particle.position.x = Math.random() * canvas.width
+            particle.position.y = Math.random() * canvas.height
+        }
+
         if (particle.opacity <= 0) {
             setInterval(() => {
                 particles.splice(n, 1)
@@ -313,13 +347,21 @@ function animation() {
             invaderProjectile.position.x <= player.position.x +
             player.width
             ) {
+                console.log('You Lose !!!')
                 setTimeout(() => {
                     invaderProjectiles.splice(index, 1)
+                    player.opacity = 0
+                    game.over = true
                 }, 0)
-                console.log('You Lose !!!')
+
+                setTimeout(() => {
+                    game.active = false
+                }, 2000)
+
                 createParticles({
                     object: player,
-                    color: 'white'
+                    color: 'white',
+                    fades: true
                 })
             }
     })
@@ -372,7 +414,8 @@ function animation() {
                             // remove invader and projectiles
                             if (invaderFound && projectileFound) {
                                 createParticles({
-                                    object: invader
+                                    object: invader,
+                                    fades: true
                                 })
                             grid.invaders.splice(i, 1)
                             projectiles.splice(j, 1)
@@ -422,6 +465,8 @@ function animation() {
 animation()
 
 addEventListener('keydown', ({ key }) => {
+    if (game.over) return
+
     switch (key){
         case 'a':
             //console.log('left')
