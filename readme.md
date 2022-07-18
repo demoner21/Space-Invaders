@@ -5,8 +5,6 @@ made in HTML5 using Canvas, in this project used to recreate a classic of the ga
 it was possible to address content such as DOM Manipulation, Swith, Destructuring, Arrays, CallBacks, Arrowfunction...
 
 # Next steps to be implemented
-Invaders Shooting
-Enemy's Explosion
 Background Creation
 Defeat Condition
 score
@@ -17,8 +15,6 @@ feito em HTML5 usando Canvas, nesse projeto utilizado para recriar um classico d
 foi possivel abordar conteudos como Manipulação da DOM, Swith, Desestruturação, Arrays, CallBacks, Arrowfunction...
 
 # Proximos passos a serem implementados
-Invaders Atirando
-Explosão dos Inimigos
 Criação de Background
 Condição de Derrota
 Score
