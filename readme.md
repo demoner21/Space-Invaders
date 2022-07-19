@@ -5,7 +5,7 @@ made in HTML5 using Canvas, in this project used to recreate a classic of the ga
 it was possible to address content such as DOM Manipulation, Swith, Destructuring, Arrays, CallBacks, Arrowfunction...
 
 # Next steps to be implemented
-score
+add conection to MetaMask
 # Trazendo o Atari para o Html
 
 nesse projeto pude utilizar para continuidade dos meus estudos as possibilidades de construção de um jogo
@@ -13,4 +13,5 @@ feito em HTML5 usando Canvas, nesse projeto utilizado para recriar um classico d
 foi possivel abordar conteudos como Manipulação da DOM, Swith, Desestruturação, Arrays, CallBacks, Arrowfunction...
 
 # Proximos passos a serem implementados
-Score
+add MetaMask
+
