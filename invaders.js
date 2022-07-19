@@ -1,9 +1,10 @@
+const scoreDE = document.querySelector('#scoreDE');
 const canvas = document.querySelector('canvas');
-
 const c = canvas.getContext('2d');
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+
+canvas.width = 1024
+canvas.height = 576;
 
 class Player {
     constructor() {
@@ -265,8 +266,10 @@ let frames = 0
 let randomWave = Math.floor(Math.random() * 500 + 500)
 let game = {
     over: false,
-    active: false
+    active: true
 }
+
+let score = 0
 
 for (let k = 0; k < 100; k++) {
     particles.push(
@@ -307,9 +310,8 @@ function createParticles({ object, color, fades }) {
 }
 
 function animation() {
-    if (game.active == true) {
-        return false
-    }
+    if (!game.active) return
+
     requestAnimationFrame(animation)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -356,7 +358,7 @@ function animation() {
 
                 setTimeout(() => {
                     game.active = false
-                }, 2000)
+                }, 2000).then(alert('You Lose !!! F5 to restart'))
 
                 createParticles({
                     object: player,
@@ -420,8 +422,11 @@ function animation() {
                             grid.invaders.splice(i, 1)
                             projectiles.splice(j, 1)
 
-                            // remove the invaders by search the array possition, to create a new grid
+                            // remove the invaders && projeciles
                             if (grid.invaders.length > 0) {
+                                score += 100
+                                scoreDE.innerHTML = score
+
                                 const firstInvader = grid.invaders[0]
                                 const lastInvader = grid.invaders[grid.invaders.length - 1]
 
@@ -507,6 +512,7 @@ addEventListener('keyup', ({ key }) => {
             break
         case ' ':
             //console.log('Shoot')
+            keys.space.pressed = false
             break
     }
 })
